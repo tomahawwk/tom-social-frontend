@@ -60,6 +60,7 @@ class FetchClient {
 			: {}
 
 		try {
+			console.log(url)
 			const response = await fetch(url, {
 				method,
 				headers: {
