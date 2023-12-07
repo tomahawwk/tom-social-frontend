@@ -1,0 +1,14 @@
+.sidebar {
+    @apply flex items-center flex-col justify-between border-r border-border py-lg;
+}
+
+.menu {
+    @apply w-full;
+    & a {
+        @apply py-md w-full flex justify-center;
+        &.active svg {
+            @apply text-white;
+        }
+    }
+}
+
