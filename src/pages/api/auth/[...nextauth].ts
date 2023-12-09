@@ -53,9 +53,9 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
 
             return {
               id: data.user.id.toString(),
-              email: data.user.email,
-              avatar: data.user.avatar?.url,
-              username: data.user.username,
+              email: data.user.attributes.email,
+              avatar: data.user.attributes.avatar?.url,
+              username: data.user.attributes.username,
               jwt: data.jwt,
             } as User;
           } catch (e) {
