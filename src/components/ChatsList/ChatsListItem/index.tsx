@@ -11,24 +11,26 @@ interface IChatListItem {
 
 const ChatsListItem: FC<IChatListItem> = ({chat}) => {
   const {user} = useAuth();
-  const correspondent = chat.participants.find(u => u.email !== user?.email);
-  const lastMessage = chat.messages.at(-1);
-
+  console.log(chat)
+  const correspondent = chat.attributes.participants.data.find(u => u.attributes.email !== user?.email);
+  
+  const lastMessage = chat.attributes.messages?.data.at(-1);
+  console.log("correspondent", correspondent)
   return (
     <Link href={`/chat/${chat.id}`} className="flex items-center">
       <Image
-        src={correspondent?.avatar?.url || '/no-avatar.jpg'}
+        src={correspondent?.attributes.avatar?.url || '/no-avatar.jpg'}
         width={50}
         height={50}
-        alt={correspondent?.email || ''}
+        alt={correspondent?.attributes.email || ''}
       />
       <div className="w-full flex">
         <div>
-          <span>{correspondent?.username}</span>
-          <span>{lastMessage?.text}</span>
+          <span>{correspondent?.attributes.username}</span>
+          <span>{lastMessage?.attributes.text}</span>
         </div>
         <div>
-          <span>{dayjs(lastMessage?.createdAt).format('HH:mm')}</span>
+          <span>{dayjs(lastMessage?.attributes.createdAt).format('HH:mm')}</span>
         </div>
       </div>
     </Link>
