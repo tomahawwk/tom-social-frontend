@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'BasisGrotesquePro';
+  src: url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.woff2')
+      format('woff2'),
+    url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Bold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BasisGrotesquePro';
+  src: url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.woff2')
+      format('woff2'),
+    url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BasisGrotesquePro';
+  src: url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.woff2')
+      format('woff2'),
+    url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Regular.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BasisGrotesquePro';
+  src: url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Light.woff2')
+      format('woff2'),
+    url('/fonts/BasisGrotesquePro/BasisGrotesquePro-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,15 +58,31 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'BasisGrotesquePro';
+  color: white;
+  @apply bg-background;
 }
 
-body, html {
+body,
+html {
   height: 100%;
+}
+
+.lazy-load-image-background.blur {
+  filter: blur(2px);
+}
+
+.animation-fade {
+  animation: fade .4s;
+}
+
+@keyframes fade {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

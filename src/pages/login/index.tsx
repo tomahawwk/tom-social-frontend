@@ -10,9 +10,7 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
   return (
-    <AuthLayout>
-      <Auth type="login" />
-    </AuthLayout>
+    <Auth type="login" />
   );
 };
 

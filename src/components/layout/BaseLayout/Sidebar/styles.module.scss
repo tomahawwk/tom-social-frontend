@@ -5,10 +5,29 @@
 .menu {
     @apply w-full;
     & a {
-        @apply py-md w-full flex justify-center;
-        &.active svg {
-            @apply text-white;
+        @apply py-md w-full flex justify-center relative;
+        &:before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            height: 25px;
+            width: 8px;
+            border-radius: 4px;
+            transition-duration: .3s;
+            transform: translateX(-4px);
+            @apply bg-primary-main;
         }
+        &:hover, &.active {
+            & svg {
+                @apply text-primary-main;
+            }
+            &:before {
+                transform: translateX(0px);
+            }
+        }
+    }
+    & svg {
+        @apply duration-300;
     }
 }
 

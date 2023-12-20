@@ -1,36 +1,48 @@
 import {useAuth} from '@/hooks/useAuth';
-import {IChat} from '@/types/chat.types';
+import {IStrapiChat} from '@/types/chat.types';
 import {FC} from 'react';
-import Image from 'next/image';
-import dayjs from 'dayjs';
 import Link from 'next/link';
+import {DateTime} from 'luxon';
+import Avatar from '@/components/Avatar';
 
 interface IChatListItem {
-  chat: IChat;
+  id: number;
+  data: IStrapiChat;
 }
 
-const ChatsListItem: FC<IChatListItem> = ({chat}) => {
+const ChatsListItem: FC<IChatListItem> = ({data: chat, id}) => {
   const {user} = useAuth();
-  console.log(chat)
-  const correspondent = chat.attributes.participants.data.find(u => u.attributes.email !== user?.email);
-  
-  const lastMessage = chat.attributes.messages?.data.at(-1);
-  console.log("correspondent", correspondent)
+  const correspondent = chat.participants.data.find(
+    u => u.attributes.email !== user?.email,
+  );
+
+  const lastMessage = chat.messages?.data.at(-1);
   return (
-    <Link href={`/chat/${chat.id}`} className="flex items-center">
-      <Image
-        src={correspondent?.attributes.avatar?.url || '/no-avatar.jpg'}
-        width={50}
-        height={50}
-        alt={correspondent?.attributes.email || ''}
+    <Link
+      href={`/chat/${id}`}
+      className="flex items-center px-md duration-300 py-sm gap-sm hover:bg-grey-400">
+      <Avatar
+        url={correspondent?.attributes?.avatar?.data?.attributes?.url}
+        alt={correspondent?.attributes.email}
       />
-      <div className="w-full flex">
-        <div>
-          <span>{correspondent?.attributes.username}</span>
-          <span>{lastMessage?.attributes.text}</span>
+      <div className="w-full flex justify-between">
+        <div className="flex flex-col">
+          <span className="font-medium capitalize text-lg">
+            {correspondent?.attributes.username}
+          </span>
+          <span className="text-md text-grey-300">
+            {lastMessage?.attributes.text}
+          </span>
         </div>
         <div>
-          <span>{dayjs(lastMessage?.attributes.createdAt).format('HH:mm')}</span>
+          {lastMessage && (
+            <span className="text-[13px] text-grey-300">
+              {DateTime.fromISO(lastMessage.attributes.createdAt).toRelative({
+                style: 'short',
+                locale: 'en',
+              })}{' '}
+            </span>
+          )}
         </div>
       </div>
     </Link>

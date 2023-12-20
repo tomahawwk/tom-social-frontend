@@ -1,4 +1,4 @@
-import { MessageCircle, Settings, User2 } from "lucide-react";
+import { MessageCircle, Settings, Users } from "lucide-react";
 
 export const MENU = [
     {
@@ -7,7 +7,7 @@ export const MENU = [
     },
     {
         url: '/friends',
-        icon: User2,
+        icon: Users,
     },
     {
         url: '/settings',

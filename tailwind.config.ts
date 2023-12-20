@@ -44,10 +44,13 @@ const config: Config = {
       },
       colors: {
         primary: {
-          main: '#15BEB6',
+          main: '#258C60',
         },
         secondary: '#ABADB1',
         grey: {
+          300: '#A9ABAD',
+          400: '#36373A',
+          450: '#2F3030',
           500: '#242424',
         },
         border: '#2A2A2A',

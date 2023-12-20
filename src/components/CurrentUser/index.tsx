@@ -1,22 +1,23 @@
 'use client';
 
 import {useAuth} from '@/hooks/useAuth';
+import LazyImage from '../ui/LazyImage';
 import {useEffect} from 'react';
-import Image from 'next/image';
 
 const CurrentUser = () => {
-  const {user, isLoggedIn} = useAuth();
-
+  const {user} = useAuth();
+  useEffect(() => {
+    console.log('user', user);
+  }, [user]);
   return (
     <div>
-    <p> {isLoggedIn ? "y" : "n"}</p>
-    <Image
-      src={user?.avatar || '/no-avatar.jpg'}
-      alt={user?.username || ''}
-      width={40}
-      height={40}
-      className="rounded-sm"
-    />
+      <LazyImage
+        src={user?.avatar || '/no-avatar.jpg'}
+        alt={user?.username || ''}
+        width={40}
+        height={40}
+        className="rounded-sm"
+      />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 .field {
-  @apply flex items-center relative;
+  @apply flex items-center relative bg-grey-400 gap-[6px] px-sm py-xs rounded-xs;
 
   > input {
-    @apply border-none outline-none bg-transparent placeholder:text-[#585654] transition-colors duration-300 ease-linear;
+    @apply border-none outline-none bg-transparent placeholder:text-grey-300 w-full duration-300 ease-linear;
   }
 
   &:focus-within {
@@ -12,7 +12,10 @@
   }
 
   .icon {
-    @apply mr-3 text-[#585654] transition-colors duration-300 ease-linear;
+    @apply w-[16px] h-[16px] transition-colors duration-300 ease-linear text-grey-300 mt-[-2px];
+    svg {
+      @apply w-full h-full;
+    }
   }
 
   .error {

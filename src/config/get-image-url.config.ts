@@ -1,0 +1,1 @@
+export const getImageUrl = (url: string) => process.env.API_URL + url;

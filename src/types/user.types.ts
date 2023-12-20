@@ -1,17 +1,19 @@
 import {IChat} from './chat.types';
 
 export interface IUser {
+  username: string | undefined;
   id: number;
-  attributes: {
-    username: string;
-    email: string;
-    confirmed: boolean;
-    role: string;
-    friends: IUser[];
-    avatar: {
-      url: string;
-    } | null;
-  };
+  email: string;
+  confirmed: boolean;
+  role: string;
+  friends: IUser[];
+  avatar: {
+    data: {
+      attributes: {
+        url: string;
+      }
+    }
+  } | null;
 }
 
 export type UserJwt = {

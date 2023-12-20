@@ -30,9 +30,9 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
 
               return {
                 id: data.user.id.toString(),
-                email: data.user.attributes.email,
-                avatar: data.user.attributes.avatar?.url,
-                username: data.user.attributes.username,
+                email: data.user.email,
+                avatar: data.user.avatar?.data.attributes.url,
+                username: data.user.username,
                 jwt: data.jwt,
               } as User;
             } catch (e) {
@@ -50,12 +50,12 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
               identifier: credentials.email,
               password: credentials.password,
             });
-
+            console.log("data",data)
             return {
               id: data.user.id.toString(),
-              email: data.user.attributes.email,
-              avatar: data.user.attributes.avatar?.url,
-              username: data.user.attributes.username,
+              email: data.user.email,
+              avatar: data.user.avatar?.data.attributes.url,
+              username: data.user.username,
               jwt: data.jwt,
             } as User;
           } catch (e) {

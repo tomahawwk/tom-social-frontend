@@ -7,9 +7,7 @@ export const metadata: Metadata = {
 
 const FriendsPage = () => {
   return (
-    <BaseLayout>
-      <div>Friends</div>
-    </BaseLayout>
+    <div>Friends</div>
   );
 };
 
