@@ -21,18 +21,20 @@ export const useReactQuerySubscription = () => {
 
   useEffect(() => {
     socket.current = io(process.env.API_URL as string);
-
+    console.log("socket", socket.current)
     socket.current.on('connect', () => {
       console.log('connected to socket.io server');
     });
 
     socket.current.on('server-message', (data: WebSocketEvent) => {
+      console.log('server-message');
       queryClient.invalidateQueries({
         queryKey: [data.entity, data.id].filter(Boolean),
       });
     });
 
     socket.current.on('update', (data: WebSocketEvent) => {
+      console.log('update');
       queryClient.setQueriesData<UpdateData[] | UpdateData | undefined>(
         {queryKey: [data.entity, data.id]},
         oldData => {
